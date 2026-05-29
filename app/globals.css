@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/*
+ * DESIGN TOKENS — the per-project rebrand lives HERE and nowhere else.
+ * Components reference semantic names (bg, text, accent…), so changing the
+ * palette/fonts below re-skins the entire site without touching any .tsx.
+ * Full guide: docs/design-tokens.md
+ *
+ * This default is a warm, neutral light theme suitable for a small-business
+ * presentation site. Swap the hex values + the two fonts in app/layout.tsx.
+ */
+@theme {
+  /* Surfaces */
+  --color-bg: #fbfaf8; /* page background (warm off-white) */
+  --color-bg-elevated: #ffffff; /* cards / raised surfaces */
+  --color-bg-warm: #f3efe9; /* alternating section background */
+
+  /* Text */
+  --color-text: #1b1a17; /* body / headings */
+  --color-text-muted: #5a5750; /* secondary text */
+  --color-text-dim: #8a867d; /* captions, eyebrows */
+
+  /* Brand accent — the one color to make the site feel like the client */
+  --color-accent: #2b6b5e;
+  --color-accent-hover: #225349;
+
+  /* Lines & states */
+  --color-line: #e6e1d8; /* borders, dividers */
+  --color-success: #2e7d52;
+  --color-error: #b23b2e;
+
+  /* Fonts — variables are provided by next/font in app/layout.tsx */
+  --font-display: var(--font-display-src), ui-serif, Georgia, serif;
+  --font-sans: var(--font-sans-src), system-ui, -apple-system, sans-serif;
+
+  /* Fluid type scale */
+  --text-hero: clamp(2.6rem, 5vw + 1rem, 5.8rem);
+  --text-hero--line-height: 1.05;
+  --text-display: clamp(2rem, 3vw + 1rem, 3.6rem);
+  --text-display--line-height: 1.1;
+  --text-title: clamp(1.4rem, 1.5vw + 0.8rem, 2rem);
+  --text-title--line-height: 1.2;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.22em;
+
+  /* Layout */
+  --container-shell: 80rem;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Accessible focus ring */
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Respect reduced-motion preference (Reveal, smooth scroll, etc.) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip-to-content link (visible only on keyboard focus) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-accent);
+  color: var(--color-bg-elevated);
+  padding: 0.75rem 1rem;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}

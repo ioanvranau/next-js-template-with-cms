@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editors / local tooling (per-session, never part of the template)
+.idea/
+/.claude/
+/.superpowers/
